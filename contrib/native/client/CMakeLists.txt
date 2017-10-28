@@ -22,6 +22,8 @@ cmake_policy(SET CMP0043 NEW)
 cmake_policy(SET CMP0048 NEW)
 enable_testing()
 
+include(GNUInstallDirs)
+
 set (DRILL_ROOT ${CMAKE_SOURCE_DIR}/../../..)
 if (NOT DEFINED DRILL_VERSION)
     message("Detecting Drill version:")
@@ -190,3 +192,8 @@ message("Open SSL = ${OPENSSL_ROOT_DIR}")
 add_executable(querySubmitter example/querySubmitter.cpp )
 
 target_link_libraries(querySubmitter ${Boost_LIBRARIES} ${PROTOBUF_LIBRARY} drillClient protomsgs y2038)
+
+install(DIRECTORY src/include/
+    DESTINATION include
+    PATTERN "*.hpp"
+    PATTERN "*.h")

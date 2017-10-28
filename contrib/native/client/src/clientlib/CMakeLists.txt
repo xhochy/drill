@@ -55,3 +55,6 @@ endif()
 
 add_library(drillClient SHARED ${CLIENTLIB_SRC_FILES} )
 target_link_libraries(drillClient ${Boost_LIBRARIES} ${PROTOBUF_LIBRARY} ${Zookeeper_LIBRARIES} ${SASL_LIBRARIES} ${OPENSSL_LIBRARIES} protomsgs y2038)
+
+install(TARGETS drillClient
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
